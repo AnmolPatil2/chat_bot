@@ -1,10 +1,13 @@
+# libs imported
 import sqlite3
 import json
 from datetime import datetime
 
+# variables
 timeframe = '2015-05'
 sql_transaction = []
 
+# connections
 connection = sqlite3.connect('{}2.db'.format(timeframe))
 c = connection.cursor()
 
@@ -75,6 +78,8 @@ def transaction_bldr(sql):
         connection.commit()
         sql_transaction = []
 
+# if the score is better than the other
+
 
 def sql_insert_replace_comment(commentid, parentid, parent, comment, subreddit, time, score):
     try:
@@ -84,6 +89,8 @@ def sql_insert_replace_comment(commentid, parentid, parent, comment, subreddit, 
     except Exception as e:
         print('s0 insertion', str(e))
 
+# if this is the first comment and has a parent
+
 
 def sql_insert_has_parent(commentid, parentid, parent, comment, subreddit, time, score):
     try:
@@ -92,6 +99,8 @@ def sql_insert_has_parent(commentid, parentid, parent, comment, subreddit, time,
         transaction_bldr(sql)
     except Exception as e:
         print('s0 insertion', str(e))
+
+# if no parent
 
 
 def sql_insert_no_parent(commentid, parentid, comment, subreddit, time, score):
